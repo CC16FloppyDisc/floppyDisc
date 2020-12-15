@@ -81,6 +81,20 @@ app.delete('/:id', async(req, res) => {
 });
 
 //Put memo of id
+app.patch('/:id', async(req, res) => {
+  try{
+    const postData = req.body;
+    console.log("patchのメソッドをチェック中",postData[0].title);
+    await db('item_lists').where({id: req.params.id}).update(postData[0]).returning('*');
+    const itemLists = await db.select().table("item_lists");
+    res.send(itemLists);
+  } catch (err) {
+    console.error("Error deleting post!", err);
+    res.sendStatus(500);
+  }
+});
+
+//Put all order info
 app.put('/:id', async(req, res) => {
   try{
     const postData = req.body;
@@ -109,9 +123,7 @@ app.put('/:id', async(req, res) => {
     console.error("Error deleting post!", err);
     res.sendStatus(500);
   }
-}
-
-);
+});
 
 // Always return the main index.html, so react-router render the route in the client
 app.get("*", (req, res, next) => {
