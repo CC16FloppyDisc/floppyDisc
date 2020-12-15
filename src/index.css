@@ -24,6 +24,10 @@ code {
 }
 #seller-login-btn {
   position: absolute;
+  right: 0;
+}
+#seller-signup-btn {
+  position: absolute;
   left: 0;
 }
 
