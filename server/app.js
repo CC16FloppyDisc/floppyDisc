@@ -21,11 +21,11 @@ app.use(
 );
 
 // Setup logger
-app.use(
-  morgan(
-    ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'
-  )
-);
+// app.use(
+//   morgan(
+//     ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'
+//   )
+// );
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));
@@ -205,6 +205,9 @@ app.post("/api/createuser", async (req, res) => {
       },
     },
   });
+
+  // HERE WE CAN PUSH account.id to our database seller table
+
   const accountLinks = await stripe.accountLinks.create({
     account: account.id,
     refresh_url: "http://localhost.com/3000",
@@ -212,10 +215,9 @@ app.post("/api/createuser", async (req, res) => {
     type: "account_onboarding",
   });
 
-  console.log(accountLinks);
   return res.send(accountLinks.url);
 });
-
+// create a checkout sessions to sell a product
 app.post("/api/checkout", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -224,10 +226,10 @@ app.post("/api/checkout", async (req, res) => {
         price_data: {
           currency: "jpy",
           product_data: {
-            name: "Stubborn Attachments",
-            images: ["https://i.imgur.com/EHyR2nP.png"],
+            name: req.body.name,
+            images: [`${req.body.img}`],
           },
-          unit_amount: 4000,
+          unit_amount: req.body.price,
         },
         quantity: 1,
       },
@@ -235,14 +237,13 @@ app.post("/api/checkout", async (req, res) => {
     payment_intent_data: {
       application_fee_amount: 123,
       transfer_data: {
-        destination: "acct_1Hynx12RMtAxn2An",
+        destination: req.body.seller_id,
       },
     },
     mode: "payment",
     success_url: `http://www.google.com`,
     cancel_url: `http://www.youtube.com`,
   });
-  console.log(session);
   return res.send(session);
 });
 
