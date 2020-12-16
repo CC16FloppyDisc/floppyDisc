@@ -5,8 +5,14 @@ import { useStripe } from "@stripe/react-stripe-js";
 const Product = ({ product }) => {
   const stripe = useStripe();
   const buyNow = async () => {
+    const body = {
+      name: product.game_title,
+      price: product.game_price,
+      img: product.image_URL,
+      seller_id: product.seller_stripe_id,
+    };
     return axios
-      .post("/api/checkout")
+      .post("/api/checkout", body)
       .then(res => res.data)
       .then(session => stripe.redirectToCheckout({ sessionId: session.id }));
   };
@@ -17,8 +23,8 @@ const Product = ({ product }) => {
         <p className="title">{product.game_title}</p>
         <img
           className="product-image"
-          src={product.img_url}
-          alt="ninjaturtles"
+          src={product.image_URL}
+          alt={product.game_title}
         />
         <p>Price: {product.game_price}</p>
         <section className="icon-list product-icon-wrapper">

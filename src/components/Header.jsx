@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 // import { useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
+  const history = useHistory();
   // const [createUserLink, setCreateUserLink] = useState();
   const createUser = async () => {
     const link = await axios.post("/api/createuser").then(res => res.data);
@@ -11,11 +13,16 @@ const Header = () => {
     }
     return;
   };
+
+  const handleLoginButton = () => {
+    history.push("/login");
+  };
+
   return (
     <div>
       <div className="login-wrapper">
         <button
-          onClick={() => createUser()}
+          onClick={() => handleLoginButton()}
           type="button"
           className="nes-btn is-primary is-dark"
           id="seller-signup-btn"
