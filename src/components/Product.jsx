@@ -27,13 +27,54 @@ const Product = ({ product }) => {
           alt={product.game_title}
         />
         <p>Price: {product.game_price}</p>
-        <section className="icon-list product-icon-wrapper">
-          <p> Condition:</p>
-          <i className="nes-icon is-medium heart"></i>
-          <i className="nes-icon is-medium is-half heart"></i>
-          <i className="nes-icon is-medium is-transparent heart"></i>
-          <i className="nes-icon is-medium is-transparent heart"></i>
-        </section>
+        {product.game_condition === "S" ? (
+          <section className="icon-list product-icon-wrapper">
+            <p> Condition:</p>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+          </section>
+        ) : product.game_condition === "A" ? (
+          <section className="icon-list product-icon-wrapper">
+            <p> Condition:</p>
+
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium is-half heart"></i>
+          </section>
+        ) : product.game_condition === "B" ? (
+          <section className="icon-list product-icon-wrapper">
+            <p> Condition:</p>
+
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium is-transparent heart"></i>
+          </section>
+        ) : product.game_condition === "C" ? (
+          <section className="icon-list product-icon-wrapper">
+            <p> Condition:</p>
+
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium is-half heart"></i>
+
+            <i className="nes-icon is-medium is-transparent heart"></i>
+          </section>
+        ) : (
+          <section className="icon-list product-icon-wrapper">
+            <p> Condition:</p>
+
+            <i className="nes-icon is-medium heart"></i>
+            <i className="nes-icon is-medium is-transparent heart"></i>
+
+            <i className="nes-icon is-medium is-transparent heart"></i>
+
+            <i className="nes-icon is-medium is-transparent heart"></i>
+          </section>
+        )}
         <button
           type="button"
           className="nes-btn is-success is-dark"
