@@ -45,5 +45,5 @@ const Product = ({ product }) => {
     </div>
   );
 };
-//en.wikipedia.org/wiki/Kirby%27s_Adventure#/media/File:Kirby's_Adventure_Coverart.png
-https: export default Product;
+
+export default Product;
