@@ -1,8 +1,16 @@
 import React from "react";
-
-import img from "../dummy-data/img/ninjaturtles.png";
+import axios from "axios";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const Product = ({ product }) => {
+  const stripe = useStripe();
+  const buyNow = async () => {
+    return axios
+      .post("/api/checkout")
+      .then(res => res.data)
+      .then(session => stripe.redirectToCheckout({ sessionId: session.id }));
+  };
+
   return (
     <div className="product-wrapper">
       <div className="nes-container is-dark with-title">
@@ -13,16 +21,18 @@ const Product = ({ product }) => {
           alt="ninjaturtles"
         />
         <p>Price: {product.game_price}</p>
-        <p>
-          Condition:
-          <section className="icon-list product-icon-wrapper">
-            <i className="nes-icon is-medium heart"></i>
-            <i className="nes-icon is-medium is-half heart"></i>
-            <i className="nes-icon is-medium is-transparent heart"></i>
-            <i className="nes-icon is-medium is-transparent heart"></i>
-          </section>
-        </p>
-        <button type="button" className="nes-btn is-success is-dark">
+        <section className="icon-list product-icon-wrapper">
+          <p> Condition:</p>
+          <i className="nes-icon is-medium heart"></i>
+          <i className="nes-icon is-medium is-half heart"></i>
+          <i className="nes-icon is-medium is-transparent heart"></i>
+          <i className="nes-icon is-medium is-transparent heart"></i>
+        </section>
+        <button
+          type="button"
+          className="nes-btn is-success is-dark"
+          onClick={() => buyNow()}
+        >
           Buy Now
         </button>{" "}
       </div>

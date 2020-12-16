@@ -11,8 +11,9 @@ const ProductList = () => {
     getProducts();
   }, []);
   return (
-    <div>
-      {products && products.map(product => <Product product={product} />)}
+    <div className="product-list-wrapper">
+      {products &&
+        products.map(product => <Product product={product} key={product.id} />)}
     </div>
   );
 };
