@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Profile from "../components/Profile";
 
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -51,7 +52,7 @@ const Login = () => {
           <button className="nes-btn is-primary is-dark" onClick={createUser}>
             Log in to Stripe
           </button>
-          <h1>PPROFILE!!</h1>
+          <Profile />{" "}
         </div>
       )}
     </div>
