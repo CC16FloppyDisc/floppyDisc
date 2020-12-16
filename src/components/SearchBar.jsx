@@ -10,7 +10,9 @@ const SearchBar = ({
     if (products) setFilteredProducts(products);
     setFilteredProducts(
       products.filter(product =>
-        product.game_title.includes(event.target.value)
+        product.game_title
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase())
       )
     );
     console.log(filteredProducts);
