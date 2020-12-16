@@ -1,46 +1,44 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: 'tron',
-      user:     'Yuta',
-      password: ''
-    }
+      database: "tron",
+      user: "work",
+      password: "",
+    },
   },
 
   staging: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: 'tron',
-      user:     'Yuta',
-      password: ''
+      database: "tron",
+      user: "work",
+      password: "",
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+      tableName: "knex_migrations",
+    },
   },
 
   production: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
-      database: 'tron',
-      user:     'Yuta',
-      password: ''
+      database: "tron",
+      user: "work",
+      password: "",
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
-
+      tableName: "knex_migrations",
+    },
+  },
 };
