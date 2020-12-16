@@ -4,30 +4,30 @@
 ## (If “nvm command not found” appeared on your terminal) ##
 
 ### ->use nodebrew ###
-https://github.com/hokaccha/nodebrew
+https://github.com/hokaccha/nodebrew  
 
 ### Install nodebrew ###
-$ curl -L git.io/nodebrew | perl - setup
-$ export PATH=$HOME/.nodebrew/current/bin:$PATH
-$ source ~/.bashrc
+$ curl -L git.io/nodebrew | perl - setup  
+$ export PATH=$HOME/.nodebrew/current/bin:$PATH  
+$ source ~/.bashrc  
 
 ### If “No such file or directory” ###
-$ cd ~
-$ vi .bashrc
-(Vim terminal will be opened. Type “:w”, then type “ZZ”)
-$  source ~/.bashrc
-$ nodebrew help
+$ cd ~  
+$ vi .bashrc  
+(Vim terminal will be opened. Type “:w”, then type “ZZ”)  
+$  source ~/.bashrc  
+$ nodebrew help  
 
 ### ->change node version ###
-nodebrew install v10.14.2
-nodebrew use v10.14.2
-node -v
+nodebrew install v10.14.2  
+nodebrew use v10.14.2  
+node -v  
 
 ### If “not changed” ###
-1. Open “.bashrc”file in home directory
+1. Open “.bashrc”file in home directory  
 
-2. Then, add following path:
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+2. Then, add following path:  
+export PATH=$HOME/.nodebrew/current/bin:$PATH  
 
 3. $ source ~/.bashrc
 4. $ nodebrew use v10.14.2
