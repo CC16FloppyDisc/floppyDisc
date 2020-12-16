@@ -1,13 +1,18 @@
 import React from "react";
 
 import img from "../dummy-data/img/ninjaturtles.png";
-const Product = () => {
+
+const Product = ({ product }) => {
   return (
     <div className="product-wrapper">
       <div className="nes-container is-dark with-title">
-        <p className="title">Game Name</p>
-        <img className="product-image" src={img} alt="ninjaturtles" />
-        <p>Price: ¥900</p>
+        <p className="title">{product.game_title}</p>
+        <img
+          className="product-image"
+          src={product.img_url}
+          alt="ninjaturtles"
+        />
+        <p>Price: {product.game_price}</p>
         <p>
           Condition:
           <section className="icon-list product-icon-wrapper">
