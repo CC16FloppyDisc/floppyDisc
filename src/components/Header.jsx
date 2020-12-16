@@ -20,7 +20,7 @@ const Header = () => {
           className="nes-btn is-primary is-dark"
           id="seller-signup-btn"
         >
-          Sign Up
+          Log In{" "}
         </button>
         <h1>Floppy Discs</h1>
         <button
@@ -29,7 +29,7 @@ const Header = () => {
           className="nes-btn is-primary is-dark"
           id="seller-login-btn"
         >
-          Log In{" "}
+          Sign Up{" "}
         </button>
       </div>
     </div>

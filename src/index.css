@@ -26,10 +26,16 @@ code {
   position: absolute;
   left: 0;
 }
+#seller-signup-btn {
+  position: absolute;
+  right: 0;
+}
 
 .product-wrapper {
   width: 300px;
   margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .product-image {
   display: block;
@@ -45,4 +51,9 @@ code {
 .search-bar-wrapper {
   width: 500px;
   margin: auto;
+}
+
+.product-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
