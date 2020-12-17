@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const AddGame = ({ userInfo }) => {
+const AddGame = ({ accountInfo }) => {
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [condition, setCondition] = useState();
+  const [userInfo, setUserInfo] = useState();
 
   const handleTitle = event => {
     setTitle(event.target.value);
@@ -19,6 +20,10 @@ const AddGame = ({ userInfo }) => {
   const handleCondition = event => {
     setCondition(event.target.value);
   };
+
+  useEffect(() => {
+    setUserInfo(accountInfo);
+  }, [accountInfo]);
 
   const postItem = () => {
     axios

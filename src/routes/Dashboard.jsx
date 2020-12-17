@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Profile from "../components/Profile";
+import { useHistory } from "react-router-dom";
+
 import axios from "axios";
 
 const Dashboard = state => {
+  const history = useHistory();
   const [userInfo, setUserInfo] = useState();
   useEffect(() => {
     setUserInfo(state.location.state);
@@ -39,14 +42,36 @@ const Dashboard = state => {
   };
 
   return (
+    // <div>
+    //   <button
+    //     className="nes-btn is-primary is-dark"
+    //     onClick={() => stripeUserCheck()}
+    //   >
+    //     Stripe
+    //   </button>
+    //   <h1>Dashboard {userInfo && "for " + userInfo.first_name}</h1>
+    //   <Profile userInfo={userInfo} />
+    // </div>
+
     <div>
-      <button
-        className="nes-btn is-primary is-dark"
-        onClick={() => stripeUserCheck()}
-      >
-        Stripe
-      </button>
-      <h1>Dashboard {userInfo && "for " + userInfo.first_name}</h1>
+      <div className="login-wrapper">
+        <button
+          onClick={() => stripeUserCheck()}
+          type="button"
+          className="nes-btn is-primary is-dark"
+          id="stripe-btn"
+        >
+          Stripe
+        </button>
+        <h1>Dashboard</h1>
+        <button
+          onClick={() => history.push("/")}
+          type="button"
+          className="nes-btn is-primary is-dark home-btn"
+        >
+          Home
+        </button>
+      </div>
       <Profile userInfo={userInfo} />
     </div>
   );

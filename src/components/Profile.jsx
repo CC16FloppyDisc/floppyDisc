@@ -19,7 +19,7 @@ const Profile = ({ userInfo }) => {
           Add Game
         </button>
 
-        {inputState && <AddGame userInfo={userInfo} />}
+        {inputState && <AddGame accountInfo={userInfo} />}
       </section>
     </div>
   );
