@@ -74,9 +74,9 @@ DATABASE_URL=postgresql://YOUR_POSGRESQL_USER_NAME@localhost:5432/YOUR_DB_NAME_H
 
 # 5. Solution #
 
-## Sign up /Login ##
+## 5-1. Sign up /Login ##
 
-### 1. Create Stripe account 
+### 5-1-1. Create Stripe account 
 Stripe create api to set up stripe express account.
 ```
 app.post("/api/createuser", async (req, res) => {
@@ -95,7 +95,7 @@ app.post("/api/createuser", async (req, res) => {
 
 ```
 
-## 2.Register id and password on Postgresql database  ##
+## 5-1-2.Register id and password on Postgresql database  ##
 When user input their id and password(Pass word will be hashed automatically),  
 api will post new data on user_table on database.
 
@@ -127,7 +127,7 @@ app.post("/signup", async (req, res) => {
 });
 ```
 
-## 3. Login ##
+## 5-1-3. Login ##
 Front-end will post data object (which includes email and password).
 Firstly, database will check if user exists in the record.
 If user email address exists, server sends back password in object.
@@ -174,7 +174,7 @@ app.post("/login", async (req, res) => {
 });
 ```
 
-## Checkout ##
+## 5-2.Checkout ##
 Sending shopping information object to stripe api.
 
 ```
