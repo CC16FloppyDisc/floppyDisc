@@ -5,13 +5,14 @@ import { useStripe } from "@stripe/react-stripe-js";
 const Product = ({ product }) => {
   const stripe = useStripe();
   const buyNow = async () => {
+    console.log("product id", product.id);
     const body = {
       name: product.game_title,
       price: product.game_price,
       img: product.image_URL,
       seller_id: product.seller_stripe_id,
     };
-    return axios
+    await axios
       .post("/api/checkout", body)
       .then(res => res.data)
       .then(session => stripe.redirectToCheckout({ sessionId: session.id }));

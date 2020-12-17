@@ -246,6 +246,7 @@ app.post("/api/checkout", async (req, res) => {
     success_url: `http://localhost.com/3000`,
     cancel_url: `http://localhost.com/3000`,
   });
+
   return res.send(session);
 });
 
@@ -303,7 +304,6 @@ app.post("/login", async (req, res) => {
               },
               process.env.JWTSK
             );
-
             return res.status(200).json({ authToken: authToken });
           } else {
             return res.status(400).json("Password Incorrect");
@@ -316,6 +316,22 @@ app.post("/login", async (req, res) => {
     console.error("Error in Signing up!", err);
     res.sendStatus(500);
   }
+});
+
+//User API
+app.get("/users", (req, res) => {
+  console.log("users");
+  db.select()
+    .table("users")
+    .then(data => res.send(data));
+});
+
+app.get("/users/:id", (req, res) => {
+  console.log(req.params.id);
+  db("users")
+    .where("id", req.params.id)
+    .select()
+    .then(data => res.send(data));
 });
 
 module.exports = app;

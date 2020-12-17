@@ -104,7 +104,7 @@ const Register = () => {
 
           <input
             id="password_field"
-            type="text"
+            type="password"
             className="nes-input is-dark"
             placeholder="Password"
             required
