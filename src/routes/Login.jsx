@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -33,7 +34,7 @@ const Login = () => {
   const handleSubmit = e => {
     e.preventDefault();
     // Call the api
-
+    let userInfo;
     axios
       .post("/login", {
         email: email,
@@ -41,8 +42,9 @@ const Login = () => {
       })
       .then(res => {
         console.log("Login Success", res.data);
+        userInfo = jwt_decode(res.data.authToken);
         if (res.status === 200) {
-          history.push("/:id/dashboard");
+          history.push("/dashboard", userInfo);
         }
       })
       .catch(err => {
@@ -57,7 +59,6 @@ const Login = () => {
     }
     return;
   };
-
   return (
     <div>
       {!loggedIn && (
@@ -78,7 +79,7 @@ const Login = () => {
 
             <input
               id="password_field"
-              type="text"
+              type="password"
               className="nes-input is-dark"
               placeholder="Password"
               required

@@ -44,8 +44,35 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Get user data
+
+app.get("/users", (req, res) => {
+  db.select()
+    .table("users")
+    .then(data => res.send(data));
+});
+
+app.get("/users/:id", (req, res) => {
+  db("users")
+    .where("id", req.params.id)
+    .select()
+    .then(data => res.json(data));
+});
+
+app.patch("/users/:id", (req, res) => {
+  db("users")
+    .where("id", req.params.id)
+    .update(req.body)
+    .then(() => {
+      db.select()
+        .where("id", req.params.id)
+        .table("users")
+        .then(data => res.send(data));
+    });
+});
+
 // GET all information
-app.get("/item/", async (req, res, next) => {
+app.get("/items", async (req, res, next) => {
   try {
     const itemLists = await db.select().table("item_lists");
     console.log("allMemo!");
@@ -57,7 +84,7 @@ app.get("/item/", async (req, res, next) => {
 });
 
 //Post new memo
-app.post("/item/", async (req, res) => {
+app.post("/items", async (req, res) => {
   try {
     const postData = req.body;
     console.log("POSTメソッド");
@@ -194,6 +221,7 @@ app.get("*", (req, res, next) => {
 });
 
 // Create User Account
+
 app.post("/api/createuser", async (req, res) => {
   const account = await stripe.accounts.create({
     country: "JP",
@@ -216,8 +244,8 @@ app.post("/api/createuser", async (req, res) => {
     return_url: "http://localhost.com/3000",
     type: "account_onboarding",
   });
-
-  return res.send(accountLinks.url);
+  const accountInfo = { url: accountLinks.url, id: account.id };
+  return res.send(accountInfo);
 });
 // create a checkout sessions to sell a product
 app.post("/api/checkout", async (req, res) => {
@@ -246,6 +274,7 @@ app.post("/api/checkout", async (req, res) => {
     success_url: `http://localhost.com/3000`,
     cancel_url: `http://localhost.com/3000`,
   });
+
   return res.send(session);
 });
 
@@ -303,7 +332,6 @@ app.post("/login", async (req, res) => {
               },
               process.env.JWTSK
             );
-
             return res.status(200).json({ authToken: authToken });
           } else {
             return res.status(400).json("Password Incorrect");
@@ -317,5 +345,23 @@ app.post("/login", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+//User API
+// app.get("/users", (req, res) => {
+//   db.select()
+//     .table("users")
+//     .then(data => console.log(data));
+// });
+
+// app.get("/api/users", async (req, res) => {
+//   try {
+//     const users = await db.select().table("users");
+//     console.log("get all users!");
+//     res.json(users);
+//   } catch (err) {
+//     console.error("Error loading users!", err);
+//     res.sendStatus(500);
+//   }
+// });
 
 module.exports = app;

@@ -10,7 +10,7 @@ const ProductList = () => {
   const [filteredProducts, setFilteredProducts] = useState();
 
   const getProducts = () =>
-    axios.get("/item/").then(res => {
+    axios.get("/items").then(res => {
       setProducts(res.data);
       setFilteredProducts(res.data);
     });

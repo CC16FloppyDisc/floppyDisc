@@ -6,13 +6,6 @@ import { useHistory } from "react-router-dom";
 const Header = () => {
   const history = useHistory();
   // const [createUserLink, setCreateUserLink] = useState();
-  const createUser = async () => {
-    const link = await axios.post("/api/createuser").then(res => res.data);
-    if (link) {
-      window.open(link);
-    }
-    return;
-  };
 
   const handleLoginButton = () => {
     history.push("/login");
