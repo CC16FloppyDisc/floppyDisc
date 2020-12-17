@@ -95,7 +95,7 @@ app.post("/api/createuser", async (req, res) => {
 
 ```
 
-## 5-1-2.Register id and password on Postgresql database  ##
+### 5-1-2.Register id and password on Postgresql database  ###
 When user input their id and password(Pass word will be hashed automatically),  
 api will post new data on user_table on database.
 
@@ -127,7 +127,7 @@ app.post("/signup", async (req, res) => {
 });
 ```
 
-## 5-1-3. Login ##
+### 5-1-3. Login ###
 Front-end will post data object (which includes email and password).
 Firstly, database will check if user exists in the record.
 If user email address exists, server sends back password in object.
