@@ -9,6 +9,7 @@ const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userDetails, setUserDetails] = useState();
 
   const handleLogIn = () => {
     // setLoggedIn(!loggedIn);
@@ -44,7 +45,7 @@ const Login = () => {
         password: password,
       })
       .then(res => {
-        console.log("Login Success", res);
+        console.log("Login Success", res.data);
         if (res.status === 200) {
           history.push("/dashboard");
         }

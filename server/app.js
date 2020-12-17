@@ -8,6 +8,8 @@ const app = express();
 const stripe = require("stripe")(
   "sk_test_51HyU7jEDGoksVgQazoYuaLO13uTFVikaAG6GebNDwmzTlOoOu4Cb6HPQxpZNyA3R7hLWSJU6OHPFtVPKsrAd90ix00rOfEPzrv"
 );
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 //CORS trial
 const cors = require("cors");
 app.use(cors({ origin: true, credentials: true }));

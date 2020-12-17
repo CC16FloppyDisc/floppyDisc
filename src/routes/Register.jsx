@@ -29,15 +29,12 @@ const Register = () => {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
-  function handleStripeIdChange(e) {
-    setStripeId(e.target.value);
-  }
+
   function resetForm() {
     setFirstName("");
     setLastName("");
     setEmail("");
     setPassword("");
-    setStripeId("");
   }
 
   //on Register form submit
@@ -113,16 +110,6 @@ const Register = () => {
             required
             value={password}
             onChange={e => handlePasswordChange(e)}
-          />
-          <label htmlFor="stripe_id_field">Enter your Stripe Id</label>
-
-          <input
-            id="stripe_id_field"
-            type="text"
-            className="nes-input is-dark"
-            placeholder="Stripe Id"
-            value={stripeId}
-            onChange={e => handleStripeIdChange(e)}
           />
 
           <button className="nes-btn is-primary is-dark" type="submit">
