@@ -10,7 +10,7 @@ TimeMachine is market place where visitors can sell/buy their vintage game colle
 2. System formation
 3. How to use
 4. Install
-5. Solution
+5. How it works
 	5-1. Sign in/Log in
 	5-2. List items
 	5-3. Upload items as seller
@@ -72,7 +72,7 @@ NODE_ENV=development
 DATABASE_URL=postgresql://YOUR_POSGRESQL_USER_NAME@localhost:5432/YOUR_DB_NAME_HERE
 ```
 
-# 5. Solution #
+# 5. How it works #
 
 ## 5-1. Sign up /Login ##
 
