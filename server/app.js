@@ -243,8 +243,8 @@ app.post("/api/checkout", async (req, res) => {
       },
     },
     mode: "payment",
-    success_url: `http://www.google.com`,
-    cancel_url: `http://www.youtube.com`,
+    success_url: `http://localhost.com/3000`,
+    cancel_url: `http://localhost.com/3000`,
   });
   return res.send(session);
 });
