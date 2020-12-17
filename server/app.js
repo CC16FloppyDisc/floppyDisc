@@ -53,11 +53,22 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/users/:id", (req, res) => {
-  console.log(req.params.id);
   db("users")
     .where("id", req.params.id)
     .select()
     .then(data => res.json(data));
+});
+
+app.patch("/users/:id", (req, res) => {
+  db("users")
+    .where("id", req.params.id)
+    .update(req.body)
+    .then(() => {
+      db.select()
+        .where("id", req.params.id)
+        .table("users")
+        .then(data => res.send(data));
+    });
 });
 
 // GET all information
@@ -210,6 +221,7 @@ app.get("*", (req, res, next) => {
 });
 
 // Create User Account
+
 app.post("/api/createuser", async (req, res) => {
   const account = await stripe.accounts.create({
     country: "JP",
@@ -232,8 +244,8 @@ app.post("/api/createuser", async (req, res) => {
     return_url: "http://localhost.com/3000",
     type: "account_onboarding",
   });
-
-  return res.send(accountLinks.url);
+  const accountInfo = { url: accountLinks.url, id: account.id };
+  return res.send(accountInfo);
 });
 // create a checkout sessions to sell a product
 app.post("/api/checkout", async (req, res) => {

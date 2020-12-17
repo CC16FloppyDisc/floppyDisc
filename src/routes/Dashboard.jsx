@@ -8,9 +8,22 @@ const Dashboard = state => {
     setUserInfo(state.location.state);
   }, []);
 
+  const createUser = async () => {
+    const link = await axios.post("/api/createuser").then(res => res.data);
+    if (link) {
+      window.open(link.url);
+      axios
+        .patch(`/users/${userInfo.id}`, { stripe_id: link.id })
+        .then(res => res.data);
+    }
+    return;
+  };
+
   const stripeUserCheck = () => {
     axios.get(`/users/${userInfo.id}`).then(res => {
-      console.log(res.data);
+      res.data[0].stripe_id.length === 0
+        ? createUser()
+        : console.log("user has stripe Id");
     });
   };
 
