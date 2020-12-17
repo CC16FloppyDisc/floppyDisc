@@ -96,7 +96,7 @@ exports.seed = function (knex) {
           game_console: "NES",
           game_price: "19800",
           image_URL:
-            "https://m.media-amazon.com/images/I/81pxNsMRptL._AC_SY500_.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/1/14/Donkey_Kong_flier.jpg",
           movie_URL: "https://www.youtube.com/watch?v=C_PrG8P5W8o",
           seller_name: "Shigeru",
           seller_family_name: "Miyamoto",
