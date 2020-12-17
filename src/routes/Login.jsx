@@ -2,18 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import Profile from "../components/Profile";
-
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userDetails, setUserDetails] = useState();
-
-  const handleLogIn = () => {
-    // setLoggedIn(!loggedIn);
-  };
 
   // Login form field handlers
   function handleEmailChange(e) {
@@ -47,7 +41,7 @@ const Login = () => {
       .then(res => {
         console.log("Login Success", res.data);
         if (res.status === 200) {
-          history.push("/dashboard");
+          history.push("/:id/dashboard");
         }
       })
       .catch(err => {
