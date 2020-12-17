@@ -20,6 +20,7 @@ const Login = () => {
   const handleSignUp = () => {
     history.push("/register");
   };
+
   // const createUser = async () => {
   //   const link = await axios.post("/api/createuser").then(res => res.data);
   //   if (link) {
