@@ -131,7 +131,7 @@ app.post("/signup", async (req, res) => {
 Front-end will post data object (which includes email and password).
 Firstly, database will check if user exists in the record.
 If user email address exists, server sends back password in object.
-Login api compare the user input password and database side password.
+Login api compare the user input password and database side password. If user input password is correct, auth_token will be returned.
 
 ```
 app.post("/login", async (req, res) => {
