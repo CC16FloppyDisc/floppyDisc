@@ -18,6 +18,10 @@ const Header = () => {
     history.push("/login");
   };
 
+  const handleSignupButton = () => {
+    history.push("/register");
+  };
+
   return (
     <div>
       <div className="login-wrapper">
@@ -31,7 +35,7 @@ const Header = () => {
         </button>
         <h1>Floppy Discs</h1>
         <button
-          onClick={() => createUser()}
+          onClick={() => handleSignupButton()}
           type="button"
           className="nes-btn is-primary is-dark"
           id="seller-login-btn"
