@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AddGame = () => {
+const AddGame = ({ userInfo }) => {
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
   const [imageUrl, setImageUrl] = useState();
@@ -27,6 +27,7 @@ const AddGame = () => {
         game_price: price,
         game_title: title,
         game_condition: condition,
+        seller_stripe_id: userInfo.stripe_id,
       })
       .then(res => res.data);
   };

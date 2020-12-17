@@ -221,7 +221,6 @@ app.get("*", (req, res, next) => {
 });
 
 // Create User Account
-
 app.post("/api/createuser", async (req, res) => {
   const account = await stripe.accounts.create({
     country: "JP",
@@ -235,9 +234,6 @@ app.post("/api/createuser", async (req, res) => {
       },
     },
   });
-
-  // HERE WE CAN PUSH account.id to our database seller table
-
   const accountLinks = await stripe.accountLinks.create({
     account: account.id,
     refresh_url: "http://localhost.com/3000",
@@ -247,6 +243,13 @@ app.post("/api/createuser", async (req, res) => {
   const accountInfo = { url: accountLinks.url, id: account.id };
   return res.send(accountInfo);
 });
+
+//
+app.post("/stripesignin", async (req, res) => {
+  const loginLink = await stripe.accounts.createLoginLink(req.body.stripe_id);
+  return res.send(loginLink);
+});
+
 // create a checkout sessions to sell a product
 app.post("/api/checkout", async (req, res) => {
   const session = await stripe.checkout.sessions.create({

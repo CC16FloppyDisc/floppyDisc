@@ -19,11 +19,22 @@ const Dashboard = state => {
     return;
   };
 
+  const stripeSignIn = async stripe_id => {
+    console.log(stripe_id);
+    const link = await axios
+      .post("/stripesignin", { stripe_id })
+      .then(res => res.data);
+    if (link) {
+      window.open(link.url);
+    }
+    return;
+  };
+
   const stripeUserCheck = () => {
     axios.get(`/users/${userInfo.id}`).then(res => {
       res.data[0].stripe_id.length === 0
         ? createUser()
-        : console.log("user has stripe Id");
+        : stripeSignIn(res.data[0].stripe_id);
     });
   };
 
@@ -36,7 +47,7 @@ const Dashboard = state => {
         Stripe
       </button>
       <h1>Dashboard {userInfo && "for " + userInfo.first_name}</h1>
-      <Profile />
+      <Profile userInfo={userInfo} />
     </div>
   );
 };

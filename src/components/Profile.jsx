@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddGame from "./AddGame";
 
-const Profile = () => {
+const Profile = ({ userInfo }) => {
   const [inputState, setInputState] = useState(false);
 
   const handleInputState = () => {
@@ -19,7 +19,7 @@ const Profile = () => {
           Add Game
         </button>
 
-        {inputState && <AddGame />}
+        {inputState && <AddGame userInfo={userInfo} />}
       </section>
     </div>
   );
