@@ -95,6 +95,85 @@ app.post("/api/createuser", async (req, res) => {
 
 ```
 
+## 2.Register id and password on Postgresql database  ##
+When user input their id and password(Pass word will be hashed automatically),  
+api will post new data on user_table on database.
+
+```
+app.post("/signup", async (req, res) => {
+  try {
+    let postData = req.body;
+    //hash the password
+    const hashed_password = bcrypt.hashSync(postData.password, 12);
+    postData.password = hashed_password;
+    //check if the user already exists
+    const email_exists = await db
+      .select()
+      .table("users")
+      .where("email", postData.email)
+      .then(res => res);
+    if (email_exists.length) {
+      return res.status(400).json("A user with this email already exists");
+    } else {
+      //insert data to the users table
+      await db.into("users").insert(postData);
+      await db.select().table("users");
+      return res.status(200).json("User Registerd Successfuly");
+    }
+  } catch (err) {
+    console.error("Error in Signing up!", err);
+    res.sendStatus(500);
+  }
+});
+```
+
+## 3. Login ##
+Front-end will post data object (which includes email and password).
+Firstly, database will check if user exists in the record.
+If user email address exists, server sends back password in object.
+Login api compare the user input password and database side password.
+
+```
+app.post("/login", async (req, res) => {
+  try {
+    let postData = req.body;
+    const user = await db
+      .select()
+      .table("users")
+      .where("email", postData.email)
+      .then(res => res);
+    if (user.length) {
+      await bcrypt
+        .compare(postData.password, user[0].password)
+        .then(isMatch => {
+          console.log("Check isMatch", isMatch);
+          if (isMatch) {
+            //Generate jwt token
+            let authToken = jwt.sign(
+              {
+                id: user[0].id,
+                first_name: user[0].first_name,
+                last_name: user[0].last_name,
+                email: user[0].email,
+              },
+              process.env.JWTSK
+            );
+
+            return res.status(200).json({ authToken: authToken });
+          } else {
+            return res.status(400).json("Password Incorrect");
+          }
+        });
+    } else {
+      throw new Error("No user with that email");
+    }
+  } catch (err) {
+    console.error("Error in Signing up!", err);
+    res.sendStatus(500);
+  }
+});
+```
+
 ## Checkout ##
 Sending shopping information object to stripe api.
 
