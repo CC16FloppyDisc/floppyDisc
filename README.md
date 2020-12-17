@@ -19,7 +19,7 @@ TimeMachine is market place where visitors can sell/buy their vintage game colle
 6. License
 ```
 # 1. Dependencies #
-Javascript, Knex, express, node, PostgreSQL, axios
+Javascript, Knex, express, node, PostgreSQL, axios, Stripe
 
 # 2. System formation #
 
