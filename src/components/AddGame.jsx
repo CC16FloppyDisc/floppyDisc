@@ -22,7 +22,7 @@ const AddGame = () => {
 
   const postItem = () => {
     axios
-      .post("/item/", {
+      .post("/items", {
         image_URL: imageUrl,
         game_price: price,
         game_title: title,

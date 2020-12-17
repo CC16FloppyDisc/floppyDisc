@@ -44,8 +44,24 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Get user data
+
+app.get("/users", (req, res) => {
+  db.select()
+    .table("users")
+    .then(data => res.send(data));
+});
+
+app.get("/users/:id", (req, res) => {
+  console.log(req.params.id);
+  db("users")
+    .where("id", req.params.id)
+    .select()
+    .then(data => res.json(data));
+});
+
 // GET all information
-app.get("/item/", async (req, res, next) => {
+app.get("/items", async (req, res, next) => {
   try {
     const itemLists = await db.select().table("item_lists");
     console.log("allMemo!");
@@ -57,7 +73,7 @@ app.get("/item/", async (req, res, next) => {
 });
 
 //Post new memo
-app.post("/item/", async (req, res) => {
+app.post("/items", async (req, res) => {
   try {
     const postData = req.body;
     console.log("POSTメソッド");
@@ -319,19 +335,21 @@ app.post("/login", async (req, res) => {
 });
 
 //User API
-app.get("/users", (req, res) => {
-  console.log("users");
-  db.select()
-    .table("users")
-    .then(data => res.send(data));
-});
+// app.get("/users", (req, res) => {
+//   db.select()
+//     .table("users")
+//     .then(data => console.log(data));
+// });
 
-app.get("/users/:id", (req, res) => {
-  console.log(req.params.id);
-  db("users")
-    .where("id", req.params.id)
-    .select()
-    .then(data => res.send(data));
-});
+// app.get("/api/users", async (req, res) => {
+//   try {
+//     const users = await db.select().table("users");
+//     console.log("get all users!");
+//     res.json(users);
+//   } catch (err) {
+//     console.error("Error loading users!", err);
+//     res.sendStatus(500);
+//   }
+// });
 
 module.exports = app;
