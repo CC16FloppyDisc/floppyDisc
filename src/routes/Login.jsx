@@ -66,14 +66,17 @@ const Login = () => {
     <div>
       {!loggedIn && (
         <div className="login-wrapper">
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="email_field">Enter your email</label>
 
             <input
               id="email_field"
-              type="text"
               className="nes-input is-dark"
               placeholder="Email"
+              required
+              type="email"
+              value={email}
+              onChange={e => handleEmailChange(e)}
             />
             <label htmlFor="password_field">Enter your password</label>
 
@@ -82,9 +85,17 @@ const Login = () => {
               type="text"
               className="nes-input is-dark"
               placeholder="Password"
+              required
+              value={password}
+              onChange={e => handlePasswordChange(e)}
             />
-            <button className="nes-btn is-primary is-dark">Sign Up</button>
-            <button className="nes-btn  is-dark" onClick={handleLogIn}>
+            <button
+              className="nes-btn is-primary is-dark"
+              onClick={handleSignUp}
+            >
+              Sign Up
+            </button>
+            <button className="nes-btn  is-dark" type={"submit"}>
               Log In
             </button>
           </form>
@@ -93,14 +104,14 @@ const Login = () => {
 
       {/* PROFILE AREA AND LINK TO STRIPE  */}
 
-      {loggedIn && (
+      {/* {loggedIn && (
         <div className="profile-header">
           <button className="nes-btn is-primary is-dark" onClick={createUser}>
             Log in to Stripe
           </button>
-          <Profile />{" "}
+          <h1>PPROFILE!!</h1>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
