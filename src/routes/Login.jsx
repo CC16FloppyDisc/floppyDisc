@@ -1,13 +1,59 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 import Profile from "../components/Profile";
 
 const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogIn = () => {
-    setLoggedIn(!loggedIn);
+    // setLoggedIn(!loggedIn);
   };
+
+  // Login form field handlers
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+  }
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  const handleSignUp = () => {
+    history.push("/register");
+  };
+  // const createUser = async () => {
+  //   const link = await axios.post("/api/createuser").then(res => res.data);
+  //   if (link) {
+  //     window.open(link);
+  //   }
+  //   return;
+  // };
+
+  //on Register form submit
+  const handleSubmit = e => {
+    e.preventDefault();
+    // Call the api
+
+    axios
+      .post("/login", {
+        email: email,
+        password: password,
+      })
+      .then(res => {
+        console.log("Login Success", res);
+        if (res.status === 200) {
+          history.push("/dashboard");
+        }
+      })
+      .catch(err => {
+        console.log("Error singing in", err);
+      });
+  };
+
   const createUser = async () => {
     const link = await axios.post("/api/createuser").then(res => res.data);
     if (link) {
