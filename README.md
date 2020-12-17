@@ -1,39 +1,37 @@
-# How to setup local DB and basic api #
+<div align="center">
+ <img src ="https://user-images.githubusercontent.com/66049678/102437824-7f31b680-405e-11eb-8651-8305c48d4878.png" width="1000">
+ </div>
 
-## 1. How to set up yarn ##
-## (If “nvm command not found” appeared on your terminal) ##
+# TimeMachine is ... #
+TimeMachine is market place where visitors can sell/buy their vintage game collections.
 
-### ->use nodebrew ###
-https://github.com/hokaccha/nodebrew  
+```
+1. Dependencies
+2. System formation
+3. How to use
+4. Install
+5. Solution
+	5-1. Sign in/Log in
+	5-2. List items
+	5-3. Upload items as seller
+	5-4. buy items as buyer
+  5-5. check out
+6. License
+```
+# 1. Dependencies #
+Javascript, Knex, express, node, PostgreSQL, axios
 
-### Install nodebrew ###
-$ curl -L git.io/nodebrew | perl - setup  
-$ export PATH=$HOME/.nodebrew/current/bin:$PATH  
-$ source ~/.bashrc  
+# 2. System formation #
 
-### If “No such file or directory” ###
-$ cd ~  
-$ vi .bashrc  
-(Vim terminal will be opened. Type “:w”, then type “ZZ”)  
-$  source ~/.bashrc  
-$ nodebrew help  
+<img width="415" alt="スクリーンショット 2020-12-17 12 02 34" src="https://user-images.githubusercontent.com/66049678/102438532-d1270c00-405f-11eb-9f34-b5ad9445d3ba.png">
 
-### ->change node version ###
-nodebrew install v10.14.2  
-nodebrew use v10.14.2  
-node -v  
+# 3. How to use #
 
-### If “not changed” ###
-1. Open “.bashrc”file in home directory  
 
-2. Then, add following path:  
-export PATH=$HOME/.nodebrew/current/bin:$PATH  
+# 4. Installation #
 
-3. $ source ~/.bashrc
-4. $ nodebrew use v10.14.2
-5.  $node -v (If you see right version of node, it’s OK)
+## 1.How to set up Database on local ##
 
-## 2.How to set up Database on local ##
 
 1. Login psql
 2. $ CREATE DATABASE tron;
@@ -45,17 +43,19 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 8. yarn knex migrate:latest
 9. yarn run knex seed:run
 
+```
 (knexfile.js setting example)
   development: {
     client: 'postgresql',
     connection: {
-      database: 'tron',
-      user:     'Yuta',
-      password: ''
+      database: 'DATABASE_NAME_HERE',
+      user:     'USER_NAME_HERE',
+      password: 'PASSWORD_HERE'
     }
   },
+```
 
-## 3.How to activate api ##
+## 2.How to activate api ##
 1. $ yarn add morgan
 2. $ yarn add path
 3. $ yarn add body-parser
@@ -66,81 +66,17 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 8. Create “.env” in directory ()
 9. $ nodemon server
 
+```
 .env file (write following codes in .env file)*adjust DATABASE_URL
 NODE_ENV=development
-DATABASE_URL=postgresql://Yuta@localhost:5432/tron
+DATABASE_URL=postgresql://YOUR_POSGRESQL_USER_NAME@localhost:5432/YOUR_DB_NAME_HERE
+```
+
+# 5. Solution #
 
 
 
 
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
