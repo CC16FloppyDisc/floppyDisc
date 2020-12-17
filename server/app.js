@@ -8,6 +8,8 @@ const app = express();
 const stripe = require("stripe")(
   "sk_test_51HyU7jEDGoksVgQazoYuaLO13uTFVikaAG6GebNDwmzTlOoOu4Cb6HPQxpZNyA3R7hLWSJU6OHPFtVPKsrAd90ix00rOfEPzrv"
 );
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 //CORS trial
 const cors = require("cors");
 app.use(cors({ origin: true, credentials: true }));
@@ -245,6 +247,75 @@ app.post("/api/checkout", async (req, res) => {
     cancel_url: `http://www.youtube.com`,
   });
   return res.send(session);
+});
+
+app.post("/signup", async (req, res) => {
+  try {
+    let postData = req.body;
+    //hash the password
+    const hashed_password = bcrypt.hashSync(postData.password, 12);
+    postData.password = hashed_password;
+    //check if the user already exists
+    const email_exists = await db
+      .select()
+      .table("users")
+      .where("email", postData.email)
+      .then(res => res);
+    if (email_exists.length) {
+      return res.status(400).json("A user with this email already exists");
+    } else {
+      //insert data to the users table
+      await db.into("users").insert(postData);
+      await db.select().table("users");
+      return res.status(200).json("User Registerd Successfuly");
+    }
+  } catch (err) {
+    console.error("Error in Signing up!", err);
+    res.sendStatus(500);
+  }
+});
+
+// login route
+app.post("/login", async (req, res) => {
+  try {
+    let postData = req.body;
+    console.log("Post data login", postData);
+    const user = await db
+      .select()
+      .table("users")
+      .where("email", postData.email)
+      .then(res => res);
+    console.log("Existing user in login", user);
+    if (user.length) {
+      console.log("user inside if", user);
+      await bcrypt
+        .compare(postData.password, user[0].password)
+        .then(isMatch => {
+          console.log("Check isMatch", isMatch);
+          if (isMatch) {
+            //Generate jwt token
+            let authToken = jwt.sign(
+              {
+                id: user[0].id,
+                first_name: user[0].first_name,
+                last_name: user[0].last_name,
+                email: user[0].email,
+              },
+              process.env.JWTSK
+            );
+
+            return res.status(200).json({ authToken: authToken });
+          } else {
+            return res.status(400).json("Password Incorrect");
+          }
+        });
+    } else {
+      throw new Error("No user with that email");
+    }
+  } catch (err) {
+    console.error("Error in Signing up!", err);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = app;
