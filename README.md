@@ -74,8 +74,60 @@ DATABASE_URL=postgresql://YOUR_POSGRESQL_USER_NAME@localhost:5432/YOUR_DB_NAME_H
 
 # 5. Solution #
 
+## Sign up /Login ##
+
+### 1. Create Stripe account 
+Stripe create api to set up stripe express account.
+```
+app.post("/api/createuser", async (req, res) => {
+  const account = await stripe.accounts.create({
+    country: "JP",
+    type: "express",
+    capabilities: {
+      card_payments: {
+        requested: true,
+      },
+      transfers: {
+        requested: true,
+      },
+    },
+  });
+
+```
+
 ## Checkout ##
-Stripe api
+Sending shopping information object to stripe api.
+
+```
+app.post("/api/checkout", async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: [
+      {
+        price_data: {
+          currency: "jpy",
+          product_data: {
+            name: req.body.name,
+            images: [`${req.body.img}`],
+          },
+          unit_amount: req.body.price,
+        },
+        quantity: 1,
+      },
+    ],
+    payment_intent_data: {
+      application_fee_amount: 123,
+      transfer_data: {
+        destination: req.body.seller_id,
+      },
+    },
+    mode: "payment",
+    success_url: `http://www.google.com`,
+    cancel_url: `http://www.youtube.com`,
+  });
+  return res.send(session);
+});
+```
 
 # 6 License #
 License for the code**<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />この 作品 は <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
