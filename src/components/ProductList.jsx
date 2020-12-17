@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
 import SearchBar from "./SearchBar";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 import axios from "axios";
 
@@ -24,12 +25,15 @@ const ProductList = () => {
         setFilteredProducts={setFilteredProducts}
         setProducts={setProducts}
       />
-      <div className="product-list-wrapper">
-        {filteredProducts &&
-          filteredProducts.map(product => (
-            <Product product={product} key={product.id} />
-          ))}
-      </div>
+
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 600: 2, 900: 3 }}>
+        <Masonry>
+          {filteredProducts &&
+            filteredProducts.map(product => (
+              <Product product={product} key={product.id} />
+            ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </div>
   );
 };

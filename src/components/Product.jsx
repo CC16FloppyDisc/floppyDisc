@@ -19,14 +19,18 @@ const Product = ({ product }) => {
 
   return (
     <div className="product-wrapper">
-      <div className="nes-container is-dark with-title">
+      <div className="nes-container is-dark with-title is-centered is-rounded">
         <p className="title">{product.game_title}</p>
         <img
           className="product-image"
           src={product.image_URL}
           alt={product.game_title}
         />
-        <p>Price: {product.game_price}</p>
+        <p>
+          {" "}
+          <i className="nes-icon coin is-small"></i> Price: ¥
+          {product.game_price}
+        </p>
         {product.game_condition === "S" ? (
           <section className="icon-list product-icon-wrapper">
             <p> Condition:</p>
