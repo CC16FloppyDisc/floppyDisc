@@ -109,6 +109,7 @@ app.post("/items", async (req, res) => {
         "seller_name",
         "seller_phone",
         "seller_postal_code",
+        "seller_stripe_id",
       ])
       .insert(postData);
     const itemLists = await db.select().table("item_lists");

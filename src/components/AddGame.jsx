@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const AddGame = ({ accountInfo }) => {
+const AddGame = ({ accountInfo, stripeId }) => {
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
   const [imageUrl, setImageUrl] = useState();
@@ -21,20 +21,22 @@ const AddGame = ({ accountInfo }) => {
     setCondition(event.target.value);
   };
 
-  useEffect(() => {
-    setUserInfo(accountInfo);
-  }, [accountInfo]);
-
+  // useEffect(() => {
+  //   setUserInfo(accountInfo);
+  //   console.log(userInfo);
+  // }, [accountInfo]);
   const postItem = () => {
     axios
       .post("/items", {
+        seller_name: accountInfo.first_name,
         image_URL: imageUrl,
         game_price: price,
         game_title: title,
         game_condition: condition,
-        seller_stripe_id: userInfo.stripe_id,
+        seller_stripe_id: stripeId,
       })
-      .then(res => res.data);
+      .then(res => res.data)
+      .catch(err => console.log(err));
   };
 
   return (

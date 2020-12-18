@@ -7,6 +7,7 @@ import axios from "axios";
 const Dashboard = state => {
   const history = useHistory();
   const [userInfo, setUserInfo] = useState();
+
   useEffect(() => {
     setUserInfo(state.location.state);
   }, []);
