@@ -43,18 +43,22 @@ const AddGame = ({ accountInfo, stripeId }) => {
     <div className="add-game-wrapper">
       <form onSubmit={() => postItem()}>
         <i class="nes-logo"></i>
-        <label htmlFor="title_field">Game Title</label>
+        <label htmlFor="title_field" className="add-item">
+          Game Title
+        </label>
 
         <input
           id="name_field"
           type="text"
-          className="nes-input is-dark"
+          className="nes-input is-dark "
           placeholder="Game Title"
           onChange={handleTitle}
         />
 
         <i className="nes-icon coin "></i>
-        <label htmlFor="price_field">Price</label>
+        <label htmlFor="price_field" className="add-item">
+          Price
+        </label>
 
         <input
           id="price_field"
@@ -64,17 +68,19 @@ const AddGame = ({ accountInfo, stripeId }) => {
           onChange={handlePrice}
         />
 
-        <label htmlFor="img_field">Image Url</label>
+        <label htmlFor="img_field" className="add-item">
+          Image Url
+        </label>
 
         <input
           id="img_field"
           type="text"
-          className="nes-input is-dark is-success"
+          className="nes-input is-dark is-success "
           placeholder="Image Url"
           onChange={handleImageUrl}
         />
 
-        <div class="nes-select is-dark">
+        <div className="nes-select is-dark add-item">
           <label htmlFor="dark_select">Condition of Game</label>
           <select required id="dark_select" onChange={handleCondition}>
             <option value="" disabled selected hidden>

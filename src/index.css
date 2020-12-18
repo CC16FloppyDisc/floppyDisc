@@ -32,6 +32,7 @@ code {
   margin-bottom: 25px;
   max-width: 500px;
   margin: auto;
+  margin-top: 100px;
 }
 #seller-login-btn {
   position: absolute;
@@ -123,7 +124,15 @@ code {
   .search-bar-wrapper {
     width: 300px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 65px;
+  }
+
+  .add-game-wrapper {
+    margin-top: 30px;
+  }
+
+  .add-item {
+    margin-top: 25px;
   }
 
   .login-wrapper {
