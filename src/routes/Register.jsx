@@ -65,7 +65,7 @@ const Register = () => {
 
   return (
     <div>
-      <div className="login-wrapper">
+      <div className="login-wrapper input-wrapper">
         <form onSubmit={handleSubmit}>
           <label htmlFor="first_name_field">Enter your first name</label>
 
