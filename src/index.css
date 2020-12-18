@@ -40,6 +40,15 @@ code {
   right: 0;
 }
 
+#stripe-btn {
+  position: absolute;
+  left: 0;
+}
+.home-btn {
+  position: absolute;
+  right: 0;
+}
+
 .product-wrapper {
   width: 310px;
   margin-top: 25px;
@@ -68,6 +77,10 @@ code {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.seller-name {
+  font-size: 0.7rem;
 }
 
 /* MEDIA QUERIES */

@@ -5,7 +5,6 @@ import { useStripe } from "@stripe/react-stripe-js";
 const Product = ({ product }) => {
   const stripe = useStripe();
   const buyNow = async () => {
-    console.log("product id", product.id);
     const body = {
       name: product.game_title,
       price: product.game_price,
@@ -27,6 +26,9 @@ const Product = ({ product }) => {
           src={product.image_URL}
           alt={product.game_title}
         />
+        {product.seller_name && (
+          <p className="seller-name"> Seller: {product.seller_name}</p>
+        )}
         <p>
           {" "}
           <i className="nes-icon coin is-small"></i> Price: ¥

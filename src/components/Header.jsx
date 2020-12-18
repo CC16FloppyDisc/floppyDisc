@@ -26,7 +26,7 @@ const Header = () => {
         >
           Log In{" "}
         </button>
-        <h1>Floppy Discs</h1>
+        <h1>TimeMachine</h1>
         <button
           onClick={() => handleSignupButton()}
           type="button"
