@@ -237,8 +237,8 @@ app.post("/api/createuser", async (req, res) => {
   });
   const accountLinks = await stripe.accountLinks.create({
     account: account.id,
-    refresh_url: "http://localhost.com/3000",
-    return_url: "http://localhost.com/3000",
+    refresh_url: "https://cc16timemachine.herokuapp.com/dashboard",
+    return_url: "https://cc16timemachine.herokuapp.com/dashboard",
     type: "account_onboarding",
   });
   const accountInfo = { url: accountLinks.url, id: account.id };
@@ -275,8 +275,8 @@ app.post("/api/checkout", async (req, res) => {
       },
     },
     mode: "payment",
-    success_url: `http://localhost.com/3000`,
-    cancel_url: `http://localhost.com/3000`,
+    success_url: `https://cc16timemachine.herokuapp.com/`,
+    cancel_url: `https://cc16timemachine.herokuapp.com/`,
   });
 
   return res.send(session);
