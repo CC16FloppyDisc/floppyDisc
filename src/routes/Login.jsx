@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <div>
       {!loggedIn && (
-        <div className="login-wrapper">
+        <div className="login-wrapper input-wrapper">
           <form onSubmit={handleSubmit}>
             <label htmlFor="email_field">Enter your email</label>
 
