@@ -55,23 +55,24 @@ const Dashboard = state => {
     // </div>
 
     <div>
+      <button
+        onClick={() => stripeUserCheck()}
+        type="button"
+        className="nes-btn is-primary is-dark"
+        id="stripe-btn"
+      >
+        Stripe
+      </button>
+
+      <button
+        onClick={() => history.push("/")}
+        type="button"
+        className="nes-btn is-primary is-dark home-btn"
+      >
+        Home
+      </button>
       <div className="login-wrapper">
-        <button
-          onClick={() => stripeUserCheck()}
-          type="button"
-          className="nes-btn is-primary is-dark"
-          id="stripe-btn"
-        >
-          Stripe
-        </button>
         <h1>Dashboard</h1>
-        <button
-          onClick={() => history.push("/")}
-          type="button"
-          className="nes-btn is-primary is-dark home-btn"
-        >
-          Home
-        </button>
       </div>
       <Profile userInfo={userInfo} />
     </div>
