@@ -17,24 +17,24 @@ const Header = () => {
 
   return (
     <div>
+      <button
+        onClick={() => handleLoginButton()}
+        type="button"
+        className="nes-btn is-primary is-dark"
+        id="seller-signup-btn"
+      >
+        Log In{" "}
+      </button>
+      <button
+        onClick={() => handleSignupButton()}
+        type="button"
+        className="nes-btn is-primary is-dark"
+        id="seller-login-btn"
+      >
+        Sign Up{" "}
+      </button>
       <div className="login-wrapper">
-        <button
-          onClick={() => handleLoginButton()}
-          type="button"
-          className="nes-btn is-primary is-dark"
-          id="seller-signup-btn"
-        >
-          Log In{" "}
-        </button>
         <h1>TimeMachine</h1>
-        <button
-          onClick={() => handleSignupButton()}
-          type="button"
-          className="nes-btn is-primary is-dark"
-          id="seller-login-btn"
-        >
-          Sign Up{" "}
-        </button>
       </div>
     </div>
   );
