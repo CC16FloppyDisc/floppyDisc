@@ -34,10 +34,12 @@ code {
 #seller-login-btn {
   position: absolute;
   left: 0;
+  margin-left: 5%;
 }
 #seller-signup-btn {
   position: absolute;
   right: 0;
+  margin-right: 5%;
 }
 
 #stripe-btn {
@@ -85,10 +87,31 @@ code {
 
 /* MEDIA QUERIES */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
   .search-bar-wrapper {
     width: 300px;
     margin: auto;
+  }
+  #seller-login-btn {
+    position: absolute;
+    left: 0;
+    margin-left: 5%;
+    margin-top: 50px;
+  }
+  #seller-signup-btn {
+    position: absolute;
+    right: 0;
+    margin-right: 5%;
+    margin-top: 50px;
+  }
+  .search-bar-wrapper {
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+  }
+
+  .login-wrapper {
+    font-size: 13px;
   }
 
   .product-wrapper {
