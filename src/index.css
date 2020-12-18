@@ -30,6 +30,8 @@ code {
   justify-content: center;
   position: relative;
   margin-bottom: 25px;
+  max-width: 500px;
+  margin: auto;
 }
 #seller-login-btn {
   position: absolute;
@@ -104,6 +106,20 @@ code {
     margin-right: 5%;
     margin-top: 50px;
   }
+
+  #stripe-btn {
+    position: absolute;
+    left: 0;
+    margin-left: 5%;
+    margin-top: 50px;
+  }
+  .home-btn {
+    position: absolute;
+    right: 0;
+    margin-right: 5%;
+    margin-top: 50px;
+  }
+
   .search-bar-wrapper {
     width: 300px;
     margin: auto;
@@ -112,6 +128,10 @@ code {
 
   .login-wrapper {
     font-size: 13px;
+  }
+
+  .profile-wrapper {
+    margin-top: 75px;
   }
 
   .product-wrapper {
