@@ -137,6 +137,7 @@ exports.seed = function (knex) {
           game_condition: "D",
           game_console: "NES",
           game_price: "19800",
+          seller_name: "Damian",
           image_URL:
             "https://upload.wikimedia.org/wikipedia/en/8/84/Dragon_Warrior.jpg",
         },
@@ -147,6 +148,7 @@ exports.seed = function (knex) {
           game_condition: "B",
           game_console: "NES",
           game_price: "1000",
+          seller_name: "Francis",
           image_URL:
             "https://upload.wikimedia.org/wikipedia/en/d/d7/Nightshade_%28NES%29_Coverart.png",
         },
@@ -157,6 +159,7 @@ exports.seed = function (knex) {
           game_condition: "C",
           game_console: "NES",
           game_price: "300",
+          seller_name: "Tsubasa",
           image_URL:
             "https://upload.wikimedia.org/wikipedia/en/8/8e/Popeye_arcadeflyer.PNG",
         },
@@ -167,6 +170,7 @@ exports.seed = function (knex) {
           game_condition: "S",
           game_console: "NES",
           game_price: "19800",
+          seller_name: "Nada",
           image_URL:
             "https://upload.wikimedia.org/wikipedia/en/9/9b/Ninja_Gaiden_%28NES%29.jpg",
         },
@@ -177,6 +181,7 @@ exports.seed = function (knex) {
           game_condition: "S",
           game_console: "NES",
           game_price: "3500",
+          seller_name: "Yuta",
           image_URL:
             "https://upload.wikimedia.org/wikipedia/en/e/ed/Bubble_bobble.jpg",
         },
